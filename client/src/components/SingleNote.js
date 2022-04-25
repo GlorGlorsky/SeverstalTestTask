@@ -11,6 +11,7 @@ const SingleNote = (props) => {
   const [noteText, setNotetText] = useState("");
   const [toggleDone, setToggleDone] = useState(false);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     if (props.data.title) {
       setNotetText(props.data.title);

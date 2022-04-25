@@ -9,8 +9,6 @@ import {
   NOTE_TOGGLE_IN_BD,
 } from "./types";
 
-
-
 export function createComment(text, id) {
   return {
     type: NOTE_CREATE,
@@ -34,13 +32,17 @@ export function deleteComment(id) {
 
 export function loadNotesFromBd() {
   return async (dispatch) => {
-    const response = await fetch("http://localhost:8080/api/note");
-    const notes = await response.json();
+    try {
+      const response = await fetch("http://localhost:8080/api/note");
+      const notes = await response.json();
 
-    dispatch({
-      type: NOTE_LOAD_FROM_BD,
-      data: notes,
-    });
+      dispatch({
+        type: NOTE_LOAD_FROM_BD,
+        data: notes,
+      });
+    } catch (error) {
+      console.log("error");
+    }
   };
 }
 
@@ -48,7 +50,7 @@ export function deleteNoteFromBd(id) {
   return async (dispatch) => {
     const response = await fetch(`http://localhost:8080/api/note/${id}`, {
       method: "DELETE",
-  });
+    });
     const notes = await response.json();
 
     dispatch({
@@ -97,7 +99,7 @@ export function createNoteInBD(comment, date, done) {
 }
 
 export function toggleNoteInBD(id, done, title) {
-    console.log("toggleCommentInBD>>>>>", id, done, title);
+  console.log("toggleCommentInBD>>>>>", id, done, title);
   return async (dispatch) => {
     const response = await fetch(`http://localhost:8080/api/note/${id}`, {
       method: "PUT",
@@ -107,7 +109,6 @@ export function toggleNoteInBD(id, done, title) {
       },
     });
     const notes = await response.json();
-    
 
     dispatch({
       type: NOTE_TOGGLE_IN_BD,

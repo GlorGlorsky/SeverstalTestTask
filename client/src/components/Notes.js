@@ -33,23 +33,67 @@ const Notes = (props) => {
     }
   };
 
+  console.log(notes);
+
+  let notesView;
+  if (notes) {
+    notesView =
+      notes.length &&
+      notes.map((res) => {
+        return <SingleNote key={res.id} data={res} />;
+      });
+  }
+
   useEffect(() => {
     dispatch(loadNotesFromBd());
-  }, []);
+  }, [dispatch]);
 
-  return (
+  return notes.length > 0 ? (
     <div>
-      <div className="Notes">Введите заметку</div>
-      <form onSubmit={handleSubmit} >
-        <input placeholder="Введите заметку" type="text" value={textNote} onChange={handleInput} className="Notes"/>
-        <input type="submit" hidden />
-      </form>
-      {!!notes.length &&
-        notes.map((res) => {
-          return <SingleNote key={res.id} data={res} />;
-        })}
+      {" "}
+      <div>
+        <div className="Notes">Введите заметку</div>
+        <form onSubmit={handleSubmit}>
+          <input
+            placeholder="Введите заметку"
+            type="text"
+            value={textNote}
+            onChange={handleInput}
+            className="Notes"
+          />
+          <input type="submit" hidden />
+        </form>
+        {/* {notes.length &&
+   notes.map((res) => {
+      return <SingleNote key={res.id} data={res} />;
+    })}  */}
+        {notesView}
+      </div>
     </div>
+  ) : (
+    <div className="Notes">Скорее всего надо подключиться к серверу </div>
   );
+
+  // return (
+  // <div>
+  //   <div className="Notes">Введите заметку</div>
+  //   <form onSubmit={handleSubmit}>
+  //     <input
+  //       placeholder="Введите заметку"
+  //       type="text"
+  //       value={textNote}
+  //       onChange={handleInput}
+  //       className="Notes"
+  //     />
+  //     <input type="submit" hidden />
+  //   </form>
+  //   {/* {notes.length &&
+  //    notes.map((res) => {
+  //       return <SingleNote key={res.id} data={res} />;
+  //     })}  */}
+  //   {notesView}
+  // </div>
+  // );
 };
 
 export default Notes;
