@@ -1,0 +1,8 @@
+export const NOTE_CREATE = "NOTE_CREATE";
+export const NOTE_UPDATE = "NOTE_UPDATE";
+export const NOTE_DELETE = "NOTE_DELETE";
+export const NOTE_LOAD_FROM_BD = "NOTE_LOAD_FROM_BD";
+export const NOTE_DELETE_FROM_BD = "NOTE_DELETE_FROM_BD";
+export const NOTE_UPDATE_IN_BD = "NOTE_UPDATE_IN_BD";
+export const NOTE_CREATE_IN_BD = "NOTE_CREATE_IN_BD";
+export const NOTE_TOGGLE_IN_BD = "NOTE_TOGGLE_IN_BD";

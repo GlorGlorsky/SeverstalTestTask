@@ -1,0 +1,50 @@
+.App {
+  font-size: 18px;
+}
+
+.Notes{
+  width: 600px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comments-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.comments-item-delete {
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+
+.checkbox-item{
+  flex: 1;
+}
+
+
+.singleInput{
+  width: 600px;
+  border: 0;
+  padding: 10px 10px;
+  border-bottom: 1px solid #f2f2f2;
+  outline: none;
+  resize: vertical;
+  background-color: white;
+  background-position: right 10px bottom 50%;
+  background-image: url("./icon/icons8-edit-24.png");  
+  background-repeat: no-repeat;
+  padding-left: 10px;
+}
+
+input:checked + input {
+  text-decoration: line-through;
+}
