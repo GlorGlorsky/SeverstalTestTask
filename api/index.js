@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors"
 import router from "./router/router.js";
+import db from "./db/dbPGSQL.js";
 
 const PORT = process.env.PORT || 8080;
 
@@ -9,14 +10,15 @@ app.use(cors());
 app.use(express.json());
 app.use("/api", router);
 
-function startApp() {
+async function startApp() {
   try {
     app.listen(PORT, () =>
       console.log(`SERVER STARTED at http://localhost:${PORT}`)
     );
+    await db.query('create TABLE IF NOT EXISTS notes(id SERIAL PRIMARY KEY,title VARCHAR(255),done BOOLEAN,date DATE);');
   } catch (e) {
     console.log(e);
   }
 }
 
-startApp();
+await startApp();
