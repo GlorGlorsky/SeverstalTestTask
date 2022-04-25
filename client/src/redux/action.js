@@ -41,79 +41,95 @@ export function loadNotesFromBd() {
         data: notes,
       });
     } catch (error) {
-      console.log("error");
+      console.log("error", error);
     }
   };
 }
 
 export function deleteNoteFromBd(id) {
   return async (dispatch) => {
-    const response = await fetch(`http://localhost:8080/api/note/${id}`, {
-      method: "DELETE",
-    });
-    const notes = await response.json();
+    try {
+      const response = await fetch(`http://localhost:8080/api/note/${id}`, {
+        method: "DELETE",
+      });
+      const notes = await response.json();
 
-    dispatch({
-      type: NOTE_DELETE_FROM_BD,
-      id: id,
-      message: notes,
-    });
+      dispatch({
+        type: NOTE_DELETE_FROM_BD,
+        id: id,
+        message: notes,
+      });
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 }
 
 export function updateNoteInBD(data, id, done) {
   return async (dispatch) => {
-    console.log("updateCommentInBD", data, id);
-    const response = await fetch(`http://localhost:8080/api/note/${id}`, {
-      method: "PUT",
-      body: JSON.stringify({ title: data, done }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const notes = await response.json();
-    console.log(notes);
-    dispatch({
-      type: NOTE_UPDATE_IN_BD,
-      data: notes,
-    });
+    try {
+      console.log("updateCommentInBD", data, id);
+      const response = await fetch(`http://localhost:8080/api/note/${id}`, {
+        method: "PUT",
+        body: JSON.stringify({ title: data, done }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const notes = await response.json();
+      console.log(notes);
+      dispatch({
+        type: NOTE_UPDATE_IN_BD,
+        data: notes,
+      });
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 }
 
 export function createNoteInBD(comment, date, done) {
   return async (dispatch) => {
-    const response = await fetch(`http://localhost:8080/api/note`, {
-      method: "POST",
-      body: JSON.stringify({ title: comment, date, done }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const notes = await response.json();
+    try {
+      const response = await fetch(`http://localhost:8080/api/note`, {
+        method: "POST",
+        body: JSON.stringify({ title: comment, date, done }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const notes = await response.json();
 
-    dispatch({
-      type: NOTE_CREATE_IN_BD,
-      data: notes,
-    });
+      dispatch({
+        type: NOTE_CREATE_IN_BD,
+        data: notes,
+      });
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 }
 
 export function toggleNoteInBD(id, done, title) {
   console.log("toggleCommentInBD>>>>>", id, done, title);
   return async (dispatch) => {
-    const response = await fetch(`http://localhost:8080/api/note/${id}`, {
-      method: "PUT",
-      body: JSON.stringify({ title: title, done }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const notes = await response.json();
+    try {
+      const response = await fetch(`http://localhost:8080/api/note/${id}`, {
+        method: "PUT",
+        body: JSON.stringify({ title: title, done }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const notes = await response.json();
 
-    dispatch({
-      type: NOTE_TOGGLE_IN_BD,
-      data: notes,
-      id: id,
-    });
+      dispatch({
+        type: NOTE_TOGGLE_IN_BD,
+        data: notes,
+        id: id,
+      });
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 }
